@@ -1,0 +1,14 @@
+QT_TS = \
+  qt/locale/voltnote_de.ts \
+  qt/locale/voltnote_en.ts \
+  qt/locale/voltnote_en_US.ts \
+  qt/locale/voltnote_es.ts \
+  qt/locale/voltnote_es_ES.ts \
+  qt/locale/voltnote_fr_FR.ts \
+  qt/locale/voltnote_hr_HR.ts \
+  qt/locale/voltnote_it.ts \
+  qt/locale/voltnote_ko_KR.ts \
+  qt/locale/voltnote_nl.ts \
+  qt/locale/voltnote_pl.ts \
+  qt/locale/voltnote_ru.ts \
+  qt/locale/voltnote_zh_CN.ts

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=VOLTNOTE
+Comment=VOLTNOTE P2P Cryptocurrency
+Comment[fr]=VOLTNOTE, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=VOLTNOTE, eşten eşe kriptografik sanal para birimi
+Exec=voltnote-qt %u
+Terminal=false
+Type=Application
+Icon=voltnote128
+MimeType=x-scheme-handler/voltnote;
+Categories=Office;Finance;
+StartupWMClass=voltnote-qt

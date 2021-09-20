@@ -1,0 +1,721 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/voltnote-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# voltnote qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/voltnote/forms/loadingdialog.ui \
+  qt/voltnote/forms/snackbar.ui \
+  qt/voltnote/forms/navmenuwidget.ui \
+  qt/voltnote/forms/lockunlock.ui \
+  qt/voltnote/forms/expandablebutton.ui \
+  qt/voltnote/forms/receivedialog.ui \
+  qt/voltnote/forms/balancebubble.ui \
+  qt/voltnote/forms/topbar.ui \
+  qt/voltnote/forms/txrow.ui \
+  qt/voltnote/forms/dashboardwidget.ui \
+  qt/voltnote/forms/addresslabelrow.ui \
+  qt/voltnote/forms/contactdropdownrow.ui \
+  qt/voltnote/forms/mninfodialog.ui \
+  qt/voltnote/forms/optionbutton.ui \
+  qt/voltnote/forms/masternodewizarddialog.ui \
+  qt/voltnote/forms/mnrow.ui \
+  qt/voltnote/forms/masternodeswidget.ui \
+  qt/voltnote/forms/myaddressrow.ui \
+  qt/voltnote/forms/csrow.ui \
+  qt/voltnote/forms/sendmemodialog.ui \
+  qt/voltnote/forms/sendchangeaddressdialog.ui \
+  qt/voltnote/forms/sendconfirmdialog.ui \
+  qt/voltnote/forms/sendcustomfeedialog.ui \
+  qt/voltnote/forms/sendmultirow.ui \
+  qt/voltnote/forms/send.ui \
+  qt/voltnote/forms/addnewaddressdialog.ui \
+  qt/voltnote/forms/addnewcontactdialog.ui \
+  qt/voltnote/forms/requestdialog.ui \
+  qt/voltnote/forms/receivewidget.ui \
+  qt/voltnote/forms/tooltipmenu.ui \
+  qt/voltnote/forms/addresseswidget.ui \
+  qt/voltnote/forms/defaultdialog.ui \
+  qt/voltnote/forms/coldstakingwidget.ui \
+  qt/voltnote/settings/forms/settingsbackupwallet.ui \
+  qt/voltnote/settings/forms/settingsexportcsv.ui \
+  qt/voltnote/settings/forms/settingsbittoolwidget.ui \
+  qt/voltnote/settings/forms/settingsconsolewidget.ui \
+  qt/voltnote/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/voltnote/settings/forms/settingsfaqwidget.ui \
+  qt/voltnote/settings/forms/settingsinformationwidget.ui \
+  qt/voltnote/settings/forms/settingsmainoptionswidget.ui \
+  qt/voltnote/settings/forms/settingsmultisenddialog.ui \
+  qt/voltnote/settings/forms/settingsmultisendwidget.ui \
+  qt/voltnote/settings/forms/settingssignmessagewidgets.ui \
+  qt/voltnote/settings/forms/settingswalletoptionswidget.ui \
+  qt/voltnote/settings/forms/settingswalletrepairwidget.ui \
+  qt/voltnote/settings/forms/settingswidget.ui \
+  qt/voltnote/forms/welcomecontentwidget.ui \
+  qt/voltnote/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/voltnote/moc_voltnotegui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/voltnote/moc_loadingdialog.cpp \
+  qt/voltnote/moc_pwidget.cpp \
+  qt/voltnote/moc_focuseddialog.cpp \
+  qt/voltnote/moc_snackbar.cpp \
+  qt/voltnote/moc_navmenuwidget.cpp \
+  qt/voltnote/moc_lockunlock.cpp \
+  qt/voltnote/moc_expandablebutton.cpp \
+  qt/voltnote/moc_furabstractlistitemdelegate.cpp \
+  qt/voltnote/moc_receivedialog.cpp \
+  qt/voltnote/moc_pfborderimage.cpp \
+  qt/voltnote/moc_topbar.cpp \
+  qt/voltnote/moc_txrow.cpp \
+  qt/voltnote/moc_dashboardwidget.cpp \
+  qt/voltnote/moc_addresslabelrow.cpp \
+  qt/voltnote/moc_contactdropdownrow.cpp \
+  qt/voltnote/moc_mninfodialog.cpp \
+  qt/voltnote/moc_optionbutton.cpp \
+  qt/voltnote/moc_coldstakingmodel.cpp \
+  qt/voltnote/moc_mnmodel.cpp \
+  qt/voltnote/moc_masternodewizarddialog.cpp \
+  qt/voltnote/moc_mnrow.cpp \
+  qt/voltnote/moc_masternodeswidget.cpp \
+  qt/voltnote/moc_myaddressrow.cpp \
+  qt/voltnote/moc_csrow.cpp \
+  qt/voltnote/moc_contactsdropdown.cpp \
+  qt/voltnote/moc_sendchangeaddressdialog.cpp \
+  qt/voltnote/moc_sendconfirmdialog.cpp \
+  qt/voltnote/moc_sendcustomfeedialog.cpp \
+  qt/voltnote/moc_sendmemodialog.cpp \
+  qt/voltnote/moc_sendmultirow.cpp \
+  qt/voltnote/moc_send.cpp \
+  qt/voltnote/moc_addnewaddressdialog.cpp \
+  qt/voltnote/moc_addnewcontactdialog.cpp \
+  qt/voltnote/moc_requestdialog.cpp \
+  qt/voltnote/moc_receivewidget.cpp \
+  qt/voltnote/moc_tooltipmenu.cpp \
+  qt/voltnote/moc_addresseswidget.cpp \
+  qt/voltnote/moc_defaultdialog.cpp \
+  qt/voltnote/moc_coldstakingwidget.cpp \
+  qt/voltnote/settings/moc_settingsbackupwallet.cpp \
+  qt/voltnote/settings/moc_settingsexportcsv.cpp \
+  qt/voltnote/settings/moc_settingsbittoolwidget.cpp \
+  qt/voltnote/settings/moc_settingsconsolewidget.cpp \
+  qt/voltnote/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/voltnote/settings/moc_settingsfaqwidget.cpp \
+  qt/voltnote/settings/moc_settingsinformationwidget.cpp \
+  qt/voltnote/settings/moc_settingsmainoptionswidget.cpp \
+  qt/voltnote/settings/moc_settingsmultisenddialog.cpp \
+  qt/voltnote/settings/moc_settingsmultisendwidget.cpp \
+  qt/voltnote/settings/moc_settingssignmessagewidgets.cpp \
+  qt/voltnote/settings/moc_settingswalletoptionswidget.cpp \
+  qt/voltnote/settings/moc_settingswalletrepairwidget.cpp \
+  qt/voltnote/settings/moc_settingswidget.cpp \
+  qt/voltnote/moc_welcomecontentwidget.cpp \
+  qt/voltnote/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/voltnote.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/voltnote/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_voltnote.cpp
+QT_QRC = qt/voltnote.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_voltnote_locale.cpp
+QT_QRC_LOCALE = qt/voltnote_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/voltnote/voltnotegui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/voltnote/prunnable.h \
+  qt/voltnote/pfborderimage.h \
+  qt/voltnote/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/voltnote/pwidget.h \
+  qt/voltnote/focuseddialog.h \
+  qt/voltnote/guitransactionsutils.h \
+  qt/voltnote/snackbar.h \
+  qt/voltnote/navmenuwidget.h \
+  qt/voltnote/lockunlock.h \
+  qt/voltnote/receivedialog.h \
+  qt/voltnote/furlistrow.h \
+  qt/voltnote/furabstractlistitemdelegate.h \
+  qt/voltnote/txviewholder.h \
+  qt/voltnote/qtutils.h \
+  qt/voltnote/expandablebutton.h \
+  qt/voltnote/balancebubble.h \
+  qt/voltnote/topbar.h \
+  qt/voltnote/txrow.h \
+  qt/voltnote/addressholder.h \
+  qt/voltnote/addressfilterproxymodel.h \
+  qt/voltnote/dashboardwidget.h \
+  qt/voltnote/addresslabelrow.h \
+  qt/voltnote/contactdropdownrow.h \
+  qt/voltnote/mninfodialog.h \
+  qt/voltnote/optionbutton.h \
+  qt/voltnote/coldstakingmodel.h \
+  qt/voltnote/mnmodel.h \
+  qt/voltnote/masternodewizarddialog.h \
+  qt/voltnote/mnrow.h \
+  qt/voltnote/masternodeswidget.h \
+  qt/voltnote/myaddressrow.h \
+  qt/voltnote/csrow.h \
+  qt/voltnote/contactsdropdown.h \
+  qt/voltnote/sendchangeaddressdialog.h \
+  qt/voltnote/sendconfirmdialog.h \
+  qt/voltnote/sendcustomfeedialog.h \
+  qt/voltnote/sendmemodialog.h \
+  qt/voltnote/sendmultirow.h \
+  qt/voltnote/send.h \
+  qt/voltnote/addnewaddressdialog.h \
+  qt/voltnote/addnewcontactdialog.h \
+  qt/voltnote/requestdialog.h \
+  qt/voltnote/receivewidget.h \
+  qt/voltnote/tooltipmenu.h \
+  qt/voltnote/addresseswidget.h \
+  qt/voltnote/defaultdialog.h \
+  qt/voltnote/coldstakingwidget.h \
+  qt/voltnote/settings/settingsbackupwallet.h \
+  qt/voltnote/settings/settingsexportcsv.h \
+  qt/voltnote/settings/settingsbittoolwidget.h \
+  qt/voltnote/settings/settingsconsolewidget.h \
+  qt/voltnote/settings/settingsdisplayoptionswidget.h \
+  qt/voltnote/settings/settingsfaqwidget.h \
+  qt/voltnote/settings/settingsinformationwidget.h \
+  qt/voltnote/settings/settingsmainoptionswidget.h \
+  qt/voltnote/settings/settingsmultisenddialog.h \
+  qt/voltnote/settings/settingsmultisendwidget.h \
+  qt/voltnote/settings/settingssignmessagewidgets.h \
+  qt/voltnote/settings/settingswalletoptionswidget.h \
+  qt/voltnote/settings/settingswalletrepairwidget.h \
+  qt/voltnote/settings/settingswidget.h \
+  qt/voltnote/welcomecontentwidget.h \
+  qt/voltnote/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/voltnote/res/img/bg-dashboard-banner.png \
+  qt/voltnote/res/img/bg-multi-number-dark.png \
+  qt/voltnote/res/img/ic-check-locked.png \
+  qt/voltnote/res/img/ic-nav-address.png \
+  qt/voltnote/res/img/ic-update.png \
+  qt/voltnote/res/img/bg-multi-number.png \
+  qt/voltnote/res/img/ic-check-mint-off.png \
+  qt/voltnote/res/img/ic-nav-cold-staking.png \
+  qt/voltnote/res/img/ic-nav-cold-staking-active.png \
+  qt/voltnote/res/img/ic-nav-dashboard-active.png \
+  qt/voltnote/res/img/ic-wallet-status-locked.png \
+  qt/voltnote/res/img/bg-splash.png \
+  qt/voltnote/res/img/ic-check-mint.png \
+  qt/voltnote/res/img/ic-nav-dashboard-hover.png \
+  qt/voltnote/res/img/ic-wallet-status-staking.png \
+  qt/voltnote/res/img/ic-check-peers-off.png \
+  qt/voltnote/res/img/ic-nav-dashboard.png \
+  qt/voltnote/res/img/ic-wallet-status-unlocked.png \
+  qt/voltnote/res/img/ic-check-peers.png \
+  qt/voltnote/res/img/ic-nav-master-active.png \
+  qt/voltnote/res/img/ic-watch-password-white.png \
+  qt/voltnote/res/img/bg-welcome-container.jpg \
+  qt/voltnote/res/img/bg-welcome-container.png \
+  qt/voltnote/res/img/bg-welcome-container@2x.png \
+  qt/voltnote/res/img/bg-welcome-container@3x.png \
+  qt/voltnote/res/img/ic-check-staking-off.png \
+  qt/voltnote/res/img/ic-nav-master-hover.png \
+  qt/voltnote/res/img/ic-watch-password.png \
+  qt/voltnote/res/img/bg-welcome.jpg \
+  qt/voltnote/res/img/bg-welcome.png \
+  qt/voltnote/res/img/bg-welcome@2x.jpg \
+  qt/voltnote/res/img/bg-welcome@3x.jpg \
+  qt/voltnote/res/img/ic-check-staking.png \
+  qt/voltnote/res/img/ic-nav-master.png \
+  qt/voltnote/res/img/btn-radio-active.png \
+  qt/voltnote/res/img/ic-check-sync-off.png \
+  qt/voltnote/res/img/ic-nav-privacy-active.png \
+  qt/voltnote/res/img/img-empty-contacts.png \
+  qt/voltnote/res/img/btn-radio-off.png \
+  qt/voltnote/res/img/ic-check-sync.png \
+  qt/voltnote/res/img/ic-nav-privacy-hover.png \
+  qt/voltnote/res/img/img-empty-dark-contacts.png \
+  qt/voltnote/res/img/ic-contact-arrow-down.png \
+  qt/voltnote/res/img/ic-contact-arrow-down-white.png \
+  qt/voltnote/res/img/ic-check-sync.png \
+  qt/voltnote/res/img/ic-check-faq.png \
+  qt/voltnote/res/img/ic-nav-privacy.png \
+  qt/voltnote/res/img/img-empty-dark-error.png \
+  qt/voltnote/res/img/ic-add-label.png \
+  qt/voltnote/res/img/ic-pending.png \
+  qt/voltnote/res/img/ic-check-theme-dark.png \
+  qt/voltnote/res/img/ic-nav-receive-active.png \
+  qt/voltnote/res/img/img-empty-dark-masternode.png \
+  qt/voltnote/res/img/ic-add-liliac.png \
+  qt/voltnote/res/img/ic-check-theme-light.png \
+  qt/voltnote/res/img/ic-nav-receive-hover.png \
+  qt/voltnote/res/img/img-empty-dark-multisend.png \
+  qt/voltnote/res/img/ic-add-purple.png \
+  qt/voltnote/res/img/ic-check-white.png \
+  qt/voltnote/res/img/ic-nav-receive.png \
+  qt/voltnote/res/img/img-empty-dark-peers.png \
+  qt/voltnote/res/img/ic-add.png \
+  qt/voltnote/res/img/ic-check.png \
+  qt/voltnote/res/img/ic-nav-send-active.png \
+  qt/voltnote/res/img/img-empty-dark-staking-off.png \
+  qt/voltnote/res/img/img-empty-dark-staking-on.png \
+  qt/voltnote/res/img/ic-address-book-grey.png \
+  qt/voltnote/res/img/ic-chevron-left.png \
+  qt/voltnote/res/img/ic-nav-send-hover.png \
+  qt/voltnote/res/img/img-empty-dark-transactions.png \
+  qt/voltnote/res/img/ic-address-book-white.png \
+  qt/voltnote/res/img/ic-chevron-right.png \
+  qt/voltnote/res/img/ic-chevron-right-liliac.png \
+  qt/voltnote/res/img/ic-nav-send.png \
+  qt/voltnote/res/img/img-empty-error.png \
+  qt/voltnote/res/img/ic-address-book.png \
+  qt/voltnote/res/img/ic-clear-liliac.png \
+  qt/voltnote/res/img/ic-nav-settings-active.png \
+  qt/voltnote/res/img/img-empty-masternode.png \
+  qt/voltnote/res/img/ic-address-send-white.png \
+  qt/voltnote/res/img/ic-clear-purple.png \
+  qt/voltnote/res/img/ic-nav-settings-hover.png \
+  qt/voltnote/res/img/img-empty-multisend.png \
+  qt/voltnote/res/img/ic-address-send.png \
+  qt/voltnote/res/img/ic-close-white.png \
+  qt/voltnote/res/img/ic-nav-settings.png \
+  qt/voltnote/res/img/img-empty-peers.png \
+  qt/voltnote/res/img/img-empty-privacy.png \
+  qt/voltnote/res/img/img-empty-privacy-dark.png \
+  qt/voltnote/res/img/ic-arrow-drop-down-white.png \
+  qt/voltnote/res/img/ic-close.png \
+  qt/voltnote/res/img/ic-radio-liliac-on.png \
+  qt/voltnote/res/img/img-empty-staking-off.png \
+  qt/voltnote/res/img/ic-arrow-drop-down.png \
+  qt/voltnote/res/img/ic-coin-vtn.png \
+  qt/voltnote/res/img/ic-receive-off.png \
+  qt/voltnote/res/img/img-empty-staking-on.png \
+  qt/voltnote/res/img/ic-arrow-drop-up-white.png \
+  qt/voltnote/res/img/ic-receive-on.png \
+  qt/voltnote/res/img/img-empty-transactions.png \
+  qt/voltnote/res/img/ic-arrow-drop-up.png \
+  qt/voltnote/res/img/ic-received.png \
+  qt/voltnote/res/img/img-logo-voltnote.png \
+  qt/voltnote/res/img/ic-arrow-drop-white-down.png \
+  qt/voltnote/res/img/ic-combo-box.png \
+  qt/voltnote/res/img/ic-send.png \
+  qt/voltnote/res/img/img-logo-voltnote@2x.png \
+  qt/voltnote/res/img/ic-arrow-purple-down.png \
+  qt/voltnote/res/img/ic-connect.png \
+  qt/voltnote/res/img/ic-submenu-lock.png \
+  qt/voltnote/res/img/img-logo-voltnote@3x.png \
+  qt/voltnote/res/img/img-logo-voltnote.png \
+  qt/voltnote/res/img/ic-arrow-right-white.png \
+  qt/voltnote/res/img/ic-arrow-left-white.png \
+  qt/voltnote/res/img/ic-arrow-left.png \
+  qt/voltnote/res/img/ic-copy-liliac.png \
+  qt/voltnote/res/img/ic-submenu-staking.png \
+  qt/voltnote/res/img/img-nav-logo-voltnote.png \
+  qt/voltnote/res/img/ic-arrow-right.png \
+  qt/voltnote/res/img/ic-copy.png \
+  qt/voltnote/res/img/ic-copy-big.png \
+  qt/voltnote/res/img/ic-copy-big-white.png \
+  qt/voltnote/res/img/ic-submenu-unlock.png \
+  qt/voltnote/res/img/img-nav-logo.png \
+  qt/voltnote/res/img/ic-arrow-white-left.png \
+  qt/voltnote/res/img/ic-exit.png \
+  qt/voltnote/res/img/ic-switch-liliac-on.png \
+  qt/voltnote/res/img/img-nav-logo.png \
+  qt/voltnote/res/img/ic-arrow-white-right.png \
+  qt/voltnote/res/img/ic-expand.png \
+  qt/voltnote/res/img/ic-switch-off.png \
+  qt/voltnote/res/img/img-qr-test-big.png \
+  qt/voltnote/res/img/ic-check-active.png \
+  qt/voltnote/res/img/ic-folder.png \
+  qt/voltnote/res/img/ic-switch-on.png \
+  qt/voltnote/res/img/img-qr-test.png \
+  qt/voltnote/res/img/ic-check-box.png \
+  qt/voltnote/res/img/ic-check-box-dark-active.png \
+  qt/voltnote/res/img/ic-check-box-indeterminate.png \
+  qt/voltnote/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/voltnote/res/img/ic-label-liliac.png \
+  qt/voltnote/res/img/ic-transaction-warning.png \
+  qt/voltnote/res/img/ic-transaction-mint.png \
+  qt/voltnote/res/img/ic-transaction-mint-inactive.png \
+  qt/voltnote/res/img/ic-check-cold-staking.png \
+  qt/voltnote/res/img/ic-check-cold-staking-off.png \
+  qt/voltnote/res/img/ic-check-cold-staking-enabled.png \
+  qt/voltnote/res/img/dark/ic-transaction-cs-contract.png \
+  qt/voltnote/res/img/dark/ic-transaction-cs-contract-inactive.png \
+  qt/voltnote/res/img/img-qr.png \
+  qt/voltnote/res/img/ic-check-connect-off.png \
+  qt/voltnote/res/img/ic-check-tor-off.png \
+  qt/voltnote/res/img/ic-check-tor.png \
+  qt/voltnote/res/img/ic-label.png \
+  qt/voltnote/res/img/ic-transaction-received.png \
+  qt/voltnote/res/img/dark/ic-transaction-received.png \
+  qt/voltnote/res/img/dark/ic-transaction-warning.png \
+  qt/voltnote/res/img/dark/ic-transaction-mint.png \
+  qt/voltnote/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/voltnote/res/img/ic-transaction-received-inactive.png \
+  qt/voltnote/res/img/dark/ic-transaction-received-inactive.png \
+  qt/voltnote/res/img/img-welcome-step1.png \
+  qt/voltnote/res/img/ic-check-connect.png \
+  qt/voltnote/res/img/ic-menu-hover.png \
+  qt/voltnote/res/img/ic-transaction-sent.png \
+  qt/voltnote/res/img/ic-transaction-sent-inactive.png \
+  qt/voltnote/res/img/dark/ic-transaction-sent.png \
+  qt/voltnote/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/voltnote/res/img/img-welcome-step2.png \
+  qt/voltnote/res/img/ic-check-dark.png \
+  qt/voltnote/res/img/ic-mint.png \
+  qt/voltnote/res/img/ic-transaction-staked.png \
+  qt/voltnote/res/img/ic-transaction-staked-inactive.png \
+  qt/voltnote/res/img/dark/ic-transaction-staked.png \
+  qt/voltnote/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/voltnote/res/img/img-welcome-step3.png \
+  qt/voltnote/res/img/ic-check-liliac-on.png \
+  qt/voltnote/res/img/ic-nav-address-active.png \
+  qt/voltnote/res/img/ic-unlock-staking.png \
+  qt/voltnote/res/img/img-welcome-step4.png \
+  qt/voltnote/res/img/ic-check-locked-off.png \
+  qt/voltnote/res/img/ic-nav-address-hover.png \
+  qt/voltnote/res/img/ic-update-liliac.png \
+  qt/voltnote/res/img/ic-arrow-drop-down-purple.png \
+  qt/voltnote/res/img/ic-arrow-drop-up-purple.png \
+  qt/voltnote/res/img/ic-check-liliac-indeterminate.png \
+  qt/voltnote/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/voltnote/res/img/ic-transaction-stake-delegated.png \
+  qt/voltnote/res/img/ic-transaction-stake-delegated-inactive.png \
+  qt/voltnote/res/img/ic-transaction-stake-hot.png \
+  qt/voltnote/res/img/ic-transaction-stake-hot-inactive.png \
+  qt/voltnote/res/img/dark/ic-transaction-stake-hot.png \
+  qt/voltnote/res/img/dark/ic-transaction-stake-hot-inactive.png \
+  qt/voltnote/res/img/dark/ic-transaction-stake-delegated.png \
+  qt/voltnote/res/img/dark/ic-transaction-stake-delegated-inactive.png \
+  qt/voltnote/res/img/ic-transaction-cs-contract.png \
+  qt/voltnote/res/img/ic-transaction-cs-contract-inactive.png \
+  qt/voltnote/res/img/ic-check-box-indeterminate.png \
+  qt/voltnote/res/img/ic-information.png \
+  qt/voltnote/res/img/ic-information-hover.png \
+  qt/voltnote/res/img/ani-loading-dark.gif \
+  qt/voltnote/res/img/ani-loading.gif
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/voltnote/voltnotegui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/voltnote/loadingdialog.cpp \
+  qt/voltnote/pwidget.cpp \
+  qt/voltnote/focuseddialog.cpp \
+  qt/voltnote/guitransactionsutils.cpp \
+  qt/voltnote/snackbar.cpp \
+  qt/voltnote/navmenuwidget.cpp \
+  qt/voltnote/lockunlock.cpp \
+  qt/voltnote/receivedialog.cpp \
+  qt/voltnote/furabstractlistitemdelegate.cpp \
+  qt/voltnote/txviewholder.cpp \
+  qt/voltnote/qtutils.cpp \
+  qt/voltnote/expandablebutton.cpp \
+  qt/voltnote/balancebubble.cpp \
+  qt/voltnote/topbar.cpp \
+  qt/voltnote/txrow.cpp \
+  qt/voltnote/addressholder.cpp \
+  qt/voltnote/addressfilterproxymodel.cpp \
+  qt/voltnote/dashboardwidget.cpp \
+  qt/voltnote/addresslabelrow.cpp \
+  qt/voltnote/contactdropdownrow.cpp \
+  qt/voltnote/contactsdropdown.cpp \
+  qt/voltnote/optionbutton.cpp \
+  qt/voltnote/mninfodialog.cpp \
+  qt/voltnote/coldstakingmodel.cpp \
+  qt/voltnote/mnmodel.cpp \
+  qt/voltnote/masternodewizarddialog.cpp \
+  qt/voltnote/mnrow.cpp \
+  qt/voltnote/masternodeswidget.cpp \
+  qt/voltnote/myaddressrow.cpp \
+  qt/voltnote/csrow.cpp \
+  qt/voltnote/sendchangeaddressdialog.cpp \
+  qt/voltnote/sendconfirmdialog.cpp \
+  qt/voltnote/sendcustomfeedialog.cpp \
+  qt/voltnote/sendmemodialog.cpp \
+  qt/voltnote/sendmultirow.cpp \
+  qt/voltnote/send.cpp \
+  qt/voltnote/addnewaddressdialog.cpp \
+  qt/voltnote/addnewcontactdialog.cpp \
+  qt/voltnote/requestdialog.cpp \
+  qt/voltnote/receivewidget.cpp \
+  qt/voltnote/tooltipmenu.cpp \
+  qt/voltnote/addresseswidget.cpp \
+  qt/voltnote/defaultdialog.cpp \
+  qt/voltnote/coldstakingwidget.cpp \
+  qt/voltnote/settings/settingsbackupwallet.cpp \
+  qt/voltnote/settings/settingsexportcsv.cpp \
+  qt/voltnote/settings/settingsbittoolwidget.cpp \
+  qt/voltnote/settings/settingsconsolewidget.cpp \
+  qt/voltnote/settings/settingsdisplayoptionswidget.cpp \
+  qt/voltnote/settings/settingsfaqwidget.cpp \
+  qt/voltnote/settings/settingsinformationwidget.cpp \
+  qt/voltnote/settings/settingsmainoptionswidget.cpp \
+  qt/voltnote/settings/settingsmultisenddialog.cpp \
+  qt/voltnote/settings/settingsmultisendwidget.cpp \
+  qt/voltnote/settings/settingssignmessagewidgets.cpp \
+  qt/voltnote/settings/settingswalletoptionswidget.cpp \
+  qt/voltnote/settings/settingswalletrepairwidget.cpp \
+  qt/voltnote/settings/settingswidget.cpp \
+  qt/voltnote/welcomecontentwidget.cpp \
+  qt/voltnote/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/voltnote/res/css/style_dark.css \
+  qt/voltnote/res/css/style_light.css
+
+BITCOIN_RC = qt/res/voltnote-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_voltnote_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# voltnote-qt binary #
+qt_voltnote_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_voltnote_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_voltnote_qt_SOURCES = qt/voltnote.cpp
+if TARGET_DARWIN
+  qt_voltnote_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_voltnote_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_voltnote_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_voltnote_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_voltnote_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_voltnote_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_voltnote_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_voltnote_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/voltnotestrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/voltnotestrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/voltnote.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/voltnote_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name voltnote_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name voltnote $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/voltnote/*.gcda qt/voltnote/*.gcno qt/voltnote/settings/*.gcda qt/voltnote/settings/*.gcno qt/temp_voltnote_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+voltnote_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_voltnote_qt_OBJECTS) qt/voltnote-qt$(EXEEXT) $(LIBBITCOINQT)
+
+voltnote_qt : qt/voltnote-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

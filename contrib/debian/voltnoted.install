@@ -1,0 +1,3 @@
+usr/local/bin/voltnoted usr/bin
+usr/local/bin/voltnote-cli usr/bin
+debian/examples/voltnote.conf etc/voltnote

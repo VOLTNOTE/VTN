@@ -1,0 +1,6 @@
+usr/local/bin/voltnote-qt usr/bin
+share/pixmaps/voltnote32.xpm usr/share/pixmaps
+share/pixmaps/voltnote16.xpm usr/share/pixmaps
+share/pixmaps/voltnote128.png usr/share/pixmaps
+debian/voltnote-qt.desktop usr/share/applications
+debian/voltnote-qt.protocol usr/share/kde4/services/
