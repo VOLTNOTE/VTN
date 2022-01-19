@@ -9,6 +9,7 @@
 #include "key.h"
 #include "key_io.h"
 #include "test/test_voltnote.h"
+#include "utilstrencodings.h"
 
 #include <string>
 #include <vector>

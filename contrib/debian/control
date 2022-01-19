@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: http://www.voltnote.org
-Vcs-Git: git://github.com/VOLTNOTE-Project/VOLTNOTE.git
-Vcs-Browser: http://github.com/VOLTNOTE-Project/VOLTNOTE
+Vcs-Git: git://github.com/VOLTNOTE/VTN.git
+Vcs-Browser: http://github.com/VOLTNOTE/VTN
 
 Package: voltnoted
 Architecture: any

@@ -1842,9 +1842,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/voltnote-project/voltnote-project-translations</source>
+https://www.transifex.com/VOLTNOTE/VTN-project-translations</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-https://www.transifex.com/voltnote-project/voltnote-project-translations </translation>
+https://www.transifex.com/VOLTNOTE/VTN-project-translations </translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

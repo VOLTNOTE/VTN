@@ -112,7 +112,7 @@ gpg --output ${VERSION}-win-unsigned/$NAME/voltnote-win-${VERSION%\.*}-build.ass
 Uploading Signatures
 --------------------
 Make a Pull Request (both the `.assert` and `.assert.sig` files) to the
-[gitian.sigs](https://github.com/voltnote-project/gitian.sigs/) repository:
+[gitian.sigs](https://github.com/VOLTNOTE/gitian.sigs/) repository:
 
 ```bash
 git checkout -b ${VERSION}-not-codesigned

@@ -24,18 +24,18 @@ URL:		https://voltnote.org/
 Source0:	https://voltnote.org/bin/voltnote-core-%{version}/voltnote-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/contrib/debian/examples/voltnote.conf
+Source10:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/contrib/debian/examples/voltnote.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/doc/man/voltnoted.1
-Source21:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/doc/man/voltnote-cli.1
-Source22:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/doc/man/voltnote-qt.1
+Source20:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/doc/man/voltnoted.1
+Source21:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/doc/man/voltnote-cli.1
+Source22:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/doc/man/voltnote-qt.1
 
 #selinux
-Source30:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/contrib/rpm/voltnote.te
+Source30:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/contrib/rpm/voltnote.te
 # Source31 - what about voltnote-tx and bench_voltnote ???
-Source31:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/contrib/rpm/voltnote.fc
-Source32:	https://raw.githubusercontent.com/voltnote-project/voltnote/v%{version}/contrib/rpm/voltnote.if
+Source31:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/contrib/rpm/voltnote.fc
+Source32:	https://raw.githubusercontent.com/VOLTNOTE/VTN/v%{version}/contrib/rpm/voltnote.if
 
 Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg
 
