@@ -106,7 +106,7 @@ parts:
       - fcitx-frontend-qt5
 
   voltnote-core:
-    source: https://github.com/VOLTNOTE-Project/VOLTNOTE
+    source: https://github.com/VOLTNOTE/VTN
     source-type: git
     source-tag: master
     plugin: nil

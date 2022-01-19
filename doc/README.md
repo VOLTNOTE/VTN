@@ -28,7 +28,7 @@ Drag VOLTNOTE-Qt to your applications folder, and then run VOLTNOTE-Qt.
 
 ### Need Help?
 
-* See the documentation at the [VOLTNOTE Wiki](https://github.com/VOLTNOTE-Project/VOLTNOTE/wiki)
+* See the documentation at the [VOLTNOTE Wiki](https://github.com/VOLTNOTE/VTN/wiki)
 for help and more information.
 * Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [VOLTNOTE Forum](http://forum.voltnote.org/).
 * Join our Discord server [Discord Server](https://discord.voltnote.org)
